@@ -1,7 +1,24 @@
 package com.manumafe.book_repo.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+
+@Entity
 public class Book {
     
+    @Id
+    @SequenceGenerator(
+        name = "book_id_sequence",
+        sequenceName = "book_id_sequence",
+        allocationSize = 1
+    )
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "book_id_sequence"
+    )
     private Integer id;
     private String bookName;
     private String bookAuthor;
