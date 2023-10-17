@@ -1,10 +1,10 @@
-package com.manumafe.todo_app;
+package com.manumafe.book_repo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TodoAppApplicationTests {
+class BookRepoApplicationTests {
 
 	@Test
 	void contextLoads() {
