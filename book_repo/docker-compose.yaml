@@ -11,14 +11,8 @@ services:
       PGDATA: /data/postgres
     ports:
       - "5432:5432"
-    networks:
-      - book_network
     volumes:
       - pgsql:/data/postgres
 
 volumes:
   pgsql:
-
-networks:
-  app_network:
-    name: book_network
