@@ -15,16 +15,24 @@ public class Book {
     private Integer id;
     private String bookName;
     private String bookAuthor;
-    private String bookStatus;
+    private BookStatus bookStatus;
 
     public Book() {
     }
 
-    public Book(Integer id, String bookName, String bookAuthor, String bookStatus) {
+    public Book(Integer id, String bookName, String bookAuthor, BookStatus bookStatus) {
         this.id = id;
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
         this.bookStatus = bookStatus;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getBookName() {
@@ -43,18 +51,12 @@ public class Book {
         this.bookAuthor = bookAuthor;
     }
 
-    public String getBookStatus() {
+    public BookStatus getBookStatus() {
         return bookStatus;
     }
 
-    public void setBookStatus(String bookStatus) {
+    public void setBookStatus(BookStatus bookStatus) {
         this.bookStatus = bookStatus;
-    }
-
-    @Override
-    public String toString() {
-        return "Book [id=" + id + ", bookName=" + bookName + ", bookAuthor=" + bookAuthor + ", bookStatus=" + bookStatus
-                + "]";
     }
 
     @Override
@@ -92,11 +94,15 @@ public class Book {
                 return false;
         } else if (!bookAuthor.equals(other.bookAuthor))
             return false;
-        if (bookStatus == null) {
-            if (other.bookStatus != null)
-                return false;
-        } else if (!bookStatus.equals(other.bookStatus))
+        if (bookStatus != other.bookStatus)
             return false;
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Book [id=" + id + ", bookName=" + bookName + ", bookAuthor=" + bookAuthor + ", bookStatus=" + bookStatus
+                + "]";
+    }
+
 }
