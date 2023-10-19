@@ -1,6 +1,9 @@
 package com.manumafe.book_repo.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,6 +18,9 @@ public class Book {
     private Integer id;
     private String bookName;
     private String bookAuthor;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private BookStatus bookStatus;
 
     public Book() {

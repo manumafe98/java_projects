@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.manumafe.book_repo.model.Book;
+import com.manumafe.book_repo.model.BookStatus;
 import com.manumafe.book_repo.model.ApiResponse;
 import com.manumafe.book_repo.service.BookService;
 
@@ -31,6 +33,11 @@ public class BookController {
 
     @GetMapping
     public List<Book> getBooks() {
-        return bookService.getAllBooks();
+        return bookService.findAllBooks();
+    }
+
+    @GetMapping("/{status}")
+    public List<Book> getBooksByStatus(@PathVariable BookStatus status) {
+        return bookService.findBooksByStatus(status);
     }
 }
