@@ -50,9 +50,9 @@ public class Gui {
         startPlayingButton = new JButton("Start Playing");
         instructionsButton = new JButton("Instructions");
 
-        rockImage = new ImageIcon("E:/Java Projects/rock_paper_scissors/images/rock.jpeg");
-        paperImage = new ImageIcon("E:/Java Projects/rock_paper_scissors/images/paper.jpeg");
-        scissorsImage = new ImageIcon("E:/Java Projects/rock_paper_scissors/images/scissors.jpeg");
+        rockImage = new ImageIcon("E:/repos/my_projects/rock_paper_scissors/images/rock.jpeg");
+        paperImage = new ImageIcon("E:/repos/my_projects/rock_paper_scissors/images/paper.jpeg");
+        scissorsImage = new ImageIcon("E:/repos/my_projects/rock_paper_scissors/images/scissors.jpeg");
         imageArray = new ImageIcon[3];
 
         random = new Random();
