@@ -1,4 +1,4 @@
-package gui;
+package com.manumafe;
 
 import java.util.Random;
 import javax.swing.ImageIcon;
@@ -34,6 +34,7 @@ public class Gui {
     private JLabel userPointsLabel;
     private JLabel pcPointsLabel;
     private JLabel resultLabel;
+    private RockPaperScissors rockPaperScissors;
     private int pcPoints;
     private int userPoints;
 
@@ -53,23 +54,20 @@ public class Gui {
         rockImage = new ImageIcon("E:/repos/my_projects/rock_paper_scissors/images/rock.jpeg");
         paperImage = new ImageIcon("E:/repos/my_projects/rock_paper_scissors/images/paper.jpeg");
         scissorsImage = new ImageIcon("E:/repos/my_projects/rock_paper_scissors/images/scissors.jpeg");
-        imageArray = new ImageIcon[3];
+        imageArray = new ImageIcon[] { rockImage, paperImage, scissorsImage };
 
         random = new Random();
         rockButton = new JButton("Rock");
         paperButton = new JButton("Paper");
         scissorsButton = new JButton("Scissors");
-
-        imageArray[0] = rockImage;
-        imageArray[1] = paperImage;
-        imageArray[2] = scissorsImage;
-
         randomImageLabel = new JLabel();
         userImageLabel = new JLabel();
 
         userPointsLabel = new JLabel("User: ");
         pcPointsLabel = new JLabel("Pc: ");
         resultLabel = new JLabel();
+
+        rockPaperScissors = new RockPaperScissors();
 
         pcPoints = 0;
         userPoints = 0;
@@ -92,22 +90,21 @@ public class Gui {
         rockButton.setFocusable(false);
         rockButton.addActionListener(e -> {
             userImageLabel.setIcon(imageArray[0]);
-            gameLogic(0);
+            choice(0);
         });
 
         paperButton.setBounds(360, 500, 100, 40);
         paperButton.setFocusable(false);
         paperButton.addActionListener(e -> {
             userImageLabel.setIcon(imageArray[1]);
-            gameLogic(1);
+            choice(1);
         });
 
         scissorsButton.setBounds(480, 500, 100, 40);
         scissorsButton.setFocusable(false);
         scissorsButton.addActionListener(e -> {
             userImageLabel.setIcon(imageArray[2]);
-            gameLogic(2);
-            ;
+            choice(2);
         });
 
         resultLabel.setBounds(300, 0, 300, 100);
@@ -160,37 +157,22 @@ public class Gui {
                 "\nHope you enjoy and start playing!");
     }
 
-    public void gameLogic(int selectedHand) {
+    public void choice(int selectedHand) {
 
         int randomNumber = random.nextInt(3);
         randomImageLabel.setIcon(imageArray[randomNumber]);
+        var result = rockPaperScissors.logic(selectedHand, randomNumber);
 
-        if (selectedHand == randomNumber) {
+        if ( result == GameResult.DRAW) {
             resultLabel.setText("Draw");
-        } else if (selectedHand == 0 && randomNumber == 1) {
-            resultLabel.setText("You Loose");
-            pcPoints += 1;
-            pcPointsLabel.setText("Pc: " + pcPoints);
-        } else if (selectedHand == 1 && randomNumber == 2) {
-            resultLabel.setText("You Loose");
-            pcPoints += 1;
-            pcPointsLabel.setText("Pc: " + pcPoints);
-        } else if (selectedHand == 2 && randomNumber == 0) {
-            resultLabel.setText("You Loose");
-            pcPoints += 1;
-            pcPointsLabel.setText("Pc: " + pcPoints);
-        } else if (selectedHand == 1 && randomNumber == 0) {
-            resultLabel.setText("You Won");
-            userPoints += 1;
-            userPointsLabel.setText("User: " + userPoints);
-        } else if (selectedHand == 2 && randomNumber == 1) {
+        } else if (result == GameResult.WIN) {
             resultLabel.setText("You Won");
             userPoints += 1;
             userPointsLabel.setText("User: " + userPoints);
         } else {
-            resultLabel.setText("You Won");
-            userPoints += 1;
-            userPointsLabel.setText("User: " + userPoints);
+            resultLabel.setText("You Loose");
+            pcPoints += 1;
+            pcPointsLabel.setText("Pc: " + pcPoints);
         }
     }
 }
